@@ -6,9 +6,6 @@ on:
   push:
     branches: 
       [ main ]
-    paths:
-    - '**'
-    - '.github/workflows/roll-dice-api-container-AutoDeployTrigger-69ef0868-46cc-49a4-9313-d36bf04db065.yml'
 
   # Allow manual trigger 
   workflow_dispatch:
@@ -16,6 +13,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions: 
+      id-token: write #This is required for requesting the OIDC JWT Token
+      contents: read
 
     steps:
       - name: Checkout to the branch
